@@ -14,40 +14,11 @@
 
     <body>
         <div class="wrap">
-            <header class="clearfix">
-                <h1><a href="">MySite</a></h1>
-              
-                <!--
-			    <ul class="clearfix">
-				    <li><span class="user-welcome">이아름 님 안녕하세요^^</span></li>
-				    <li>
-                        <a class="btn btn-white btn-sm" href="">로그아웃</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">정보수정</a>
-                    </li>
-			    </ul>
-                -->
-                 	
-               <ul class="clearfix">
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">로그인</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">회원가입</a>
-                    </li>
-                </ul>
-            </header>
-                 
-            <nav>
-                <ul class="clearfix">
-                    <li><a href="">입사지원서</a></li>
-                    <li><a href="">게시판</a></li>
-                    <li><a href="">갤러리</a></li>
-                    <li><a href="">방명록</a></li>
-                </ul>
-            </nav>
-
+        	
+        	<!-- 헤더 + 네비----------------------------------------------------->
+        	<c:import url="/WEB-INF/views/include/header.jsp" > </c:import>
+        	<!-- 헤더 + 네비----------------------------------------------------->
+        	     
             <div class="content clearfix">
                 <main>
                     <div id="main-home">
@@ -78,11 +49,10 @@
                 </main>
             </div>
 
-            <footer>
-                <p>
-                    Copyright ⓒ 2025 이아름. All right reserved  
-                </p>
-            </footer>
-        </div>
+			<!----------------------  footer------------------------------------------------>
+       		<c:import url="/WEB-INF/views/include/footer.jsp" > </c:import>
+    		<!----------------------  footer------------------------------------------------>
+       		
+       	</div>
     </body>
 </html>
