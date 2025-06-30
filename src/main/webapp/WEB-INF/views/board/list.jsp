@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>Add commentMore actions
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -9,9 +9,9 @@
         <title>MySite</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/board.css">
     </head>
-	
+    
 	<body>
 		<div class="wrap">
 		
@@ -63,66 +63,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>	
+								<c:forEach items="${requestScope.boardList}"  var="boardVO">
+								
+									<tr>
+										<td>${boardVO.no}</td>
+										<td class="txt-left"><a href="#">${boardVO.title}</a></td>
+										<td>${boardVO.userName}</td>
+										<td>${boardVO.hit}</td>
+										<td>${boardVO.regDate}</td>
+										<td>
+	                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
+	                                    </td>
+									</tr>
+								
+								</c:forEach>
 							</tbody>
 						</table>
                         <div class="paging">
