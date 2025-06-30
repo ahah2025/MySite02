@@ -25,4 +25,33 @@ public class BoardRepository {
 		return boardList;
 	}
 	
+	//--board 정보 가져오기
+	public BoardVO boardSelectOne(BoardVO boardVO) {
+		System.out.println("BoardRepository.boardSelectOne");
+		
+		BoardVO board02 = sqlSession.selectOne("board.selectOne", boardVO);  
+		
+		return board02;
+	}
+	
+	//board 정보 가져오기(no) --> 수정폼
+	public BoardVO boardSelectByNo(int no) {
+		System.out.println("BoardRepository.boardSelectByNo()");
+		
+		BoardVO boardVO = sqlSession.selectOne("board.boardSelectByNo", no);
+		
+		return boardVO;
+		
+	}	
+	
+	//board 정보 수정
+	public int boardUpdate(BoardVO boardVO) {
+		System.out.println("BoardRepository.boardUpdate");
+		
+		int i = sqlSession.update("board.update",boardVO);
+		
+		return i;
+	}
+	
+	
 }
