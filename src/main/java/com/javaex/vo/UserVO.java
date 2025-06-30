@@ -9,7 +9,6 @@ public class UserVO {
 	private String name;
 	private String gender;
 	
-	
 	//생성자
 	public UserVO() {}
 	

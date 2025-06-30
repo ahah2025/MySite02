@@ -12,7 +12,18 @@
 		]]>
 	</insert>
 	
+	<!-- user정보 가져오기(세션용) -->
 	<select id="selectOneByIdPw" parameterType="com.javaex.vo.UserVO" resultType="com.javaex.vo.UserVO">
+		<![CDATA[
+			select 	no,
+			        name
+			from user
+			where id = #{id}
+			and password = #{password}
+		]]>
+	</select>
+
+	<select id="userSelectByNo" parameterType="int" resultType="com.javaex.vo.UserVO">
 		<![CDATA[
 			select 	no,
 					id,
@@ -20,8 +31,7 @@
 			        name,
 			        gender
 			from user
-			where id = #{id}
-			and password = #{password}
+			where no = #{no}
 		]]>
 	</select>
 	

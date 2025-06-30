@@ -6,9 +6,9 @@
 	<head>
         <meta charset="UTF-8">
         <title>MySite</title>
-        <link rel="stylesheet" href="../../assets/css/reset.css">
-        <link rel="stylesheet" href="../../assets/css/mysite.css">
-        <link rel="stylesheet" href="../../assets/css/user.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
 	</head>
 	<body>
 		<div class="wrap">
@@ -43,22 +43,27 @@
                         <form class="form-box" action="" method="">
                             <div class="info-row">
                                 <span class="info-title">아이디</span>
-                                <span id="txt-id">aaaa</span>
+                                <span id="txt-id">${requestScope.userVO.id}</span>
                             </div>
                             <div class="info-row">
                                 <label class="info-title" for="txt-pwd">패스워드</label>
-                                <input id="txt-pwd" type="password" name="" value="">
+                                <input id="txt-pwd" type="password" name="" value="${requestScope.userVO.password}">
                             </div>
                             <div class="info-row">
                                 <label class="info-title" for="txt-name">이름</label>
-                                <input id="txt-name" type="text" name="" value="">
+                                <input id="txt-name" type="text" name="" value="${requestScope.userVO.name}">
                             </div>
                             <div class="info-row">
-                                <span class="info-title">성별</span>
+                                <span class="info-title">성별${requestScope.userVO.gender}</span>
                                 <label>남</label>
-                                <input type="radio">
+                                <c:if test="${requestScope.userVO.gender == 'male'}">
+                                <input type="radio" name="" value="" checked>
+                                </c:if>
+                                
                                 <label>여</label>
-                                <input type="radio">
+                                <c:if test="${requestScope.userVO.gender == 'female'}">
+                                <input type="radio" name="" value="" checked>
+                                </c:if>
                             </div>
                             <div class="btn-group">
                                 <button id="btn-edit" class="btn btn-blue btn-lg" type="submit">회원정보수정</button>

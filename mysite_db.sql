@@ -26,6 +26,13 @@ where id = 'aaa'
 
 -- 등록
 insert into user
-values(null, 'ddd' ,'123','김철수', '남성')
+values(null, 'kim' ,'222','김철수', '여성')
 ;
 
+-- 회원정보 수정
+update user
+set name = '이효리',
+	password = '123',
+    gender = 'female'
+where no = 1
+;
