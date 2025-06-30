@@ -34,6 +34,14 @@ where id = 'aaa'
 and password = '123'
 ;
 
+select 	no,
+		id,
+        password,
+        name,
+        gender
+from user
+;
+
 -- 회원정보 수정폼
 select 	no,
 		id,

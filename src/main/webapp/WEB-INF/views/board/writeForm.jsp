@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- writeform.jsp -->
 <!DOCTYPE html>
 
 <html lang="ko">
@@ -53,7 +54,7 @@
 							</div>
 							
                             <div class="btn-box">
-							    <a class="btn btn-gray btn-md" href="">목록</a>
+							    <a class="btn btn-gray btn-md" href="board/list">목록</a>
 							    <button class="btn btn-blue btn-md" type="submit" >등록</button>
 							</div>
 						</form>

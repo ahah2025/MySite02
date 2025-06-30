@@ -37,15 +37,15 @@ public class BoardController {
 	}
 	
 	//글쓰기 폼
-	@RequestMapping(value="/board/WritingForm", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/board/writeform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String WritingForm() {
-		System.out.println("BoardController.WritingForm");
+		System.out.println("BoardController.writeform");
 		
-		return "board/WritingForm";
+		return "board/writeForm";
 	}
 	
 	//글쓰기
-	@RequestMapping(value = "/board/Writing", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/board/writing", method = { RequestMethod.GET, RequestMethod.POST })
 	public String Writing(@ModelAttribute BoardVO boardVO, HttpSession session) {
 		System.out.println("boardController.Writing()");
 		
@@ -57,9 +57,26 @@ public class BoardController {
 		return "redirect:/";		
 	}
 	
-	//보기
+	//보기  --- 에러... 정상페이지가 아님
+	@RequestMapping(value = "/board/read", method = { RequestMethod.GET, RequestMethod.POST })
+	public String read(@ModelAttribute BoardVO boardVO, HttpSession session) {
+		System.out.println("boardController.read()");
+		
+		BoardVO board02 = boardService.exeWriting(boardVO);
+		System.out.println(board02);
+		
+		session.setAttribute("board02", board02);
+		
+		return "board/editform";		
+	}	
 	
-	//삭제
+	//삭제 --- 정상적으로 보임
+	@RequestMapping(value="/board/remove",method={RequestMethod.GET,RequestMethod.POST})
+	public String remove() {
+		System.out.println("boardController.remove");
+		
+		return "guestbook/removeform";	
+	}
 	
 	//수정폼
 	@RequestMapping(value="/board/editeform", method= {RequestMethod.GET, RequestMethod.POST})
@@ -69,11 +86,11 @@ public class BoardController {
 		//세션에서 no값을 가져온다
 		BoardVO board01 = (BoardVO)session.getAttribute("board01");
 				
-		if(board01 == null) { //로그인 안했을때
+		if(board01 == null) {
 			
-			return "redirect:/board/list";
+			return "guestbook/removeform";
 		
-		}else { //로그인 했을때
+		}else { 
 
 			int b01 = board01.getNo();
 			
@@ -83,7 +100,7 @@ public class BoardController {
 			model.addAttribute("BoardVO", boardVO);
 		}
 		
-		return "board/editeForm";
+		return "board/editform";
 	}
 		
 	

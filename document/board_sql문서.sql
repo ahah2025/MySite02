@@ -13,6 +13,16 @@ show tables;
 
 -- board(게시판)테이블 생성
 create table board(
-
-
+	no 			int 		  primary key 	auto_increment,
+    user_no 	int,
+    title 		varchar(500)  not null,
+    content 	text,
+    hit 		int,
+    reg_dete 	datetime	  not null,
+    constraint board_fk foreign key(user_no)
+    references user(no)
 );
+
+select * 
+from board
+;
