@@ -48,7 +48,7 @@ public class UserService {
 		
 		int count = userRepository.userUpdate(userVO);
 		
-		return 0;
+		return count;
 	}
 	
 	

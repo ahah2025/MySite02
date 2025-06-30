@@ -23,6 +23,7 @@
 		]]>
 	</select>
 
+	<!-- no로 user정보 가져오기(회원수정폼) -->
 	<select id="userSelectByNo" parameterType="int" resultType="com.javaex.vo.UserVO">
 		<![CDATA[
 			select 	no,
@@ -35,6 +36,15 @@
 		]]>
 	</select>
 	
-	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="com.javaex.vo.UserVO">
+		<![CDATA[
+			update user
+			set name = #{name},
+				password = #{password},
+			    gender = #{gender}
+			where no = #{no}
+		]]>		
+	</update>	
 	
 </mapper>

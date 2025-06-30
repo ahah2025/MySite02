@@ -47,9 +47,13 @@ public class UserRepository {
 		
 	}
 	
-	//회원정보 수정
-	public UserVO userUpdate(){
+	//--회원정보수정
+	public int userUpdate(UserVO userVO) {
+		System.out.println("UserRepository.userUpdate()");
 		
+		int count = sqlSession.update("user.update", userVO);
+		
+		return count;
 	}
 	
 	

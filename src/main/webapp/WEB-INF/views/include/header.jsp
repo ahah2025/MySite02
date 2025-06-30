@@ -9,8 +9,7 @@
 	</head>
 	<body>
 		<header class="clearfix">
-        	<h1><a href="">MySite</a></h1>
-                
+        	<h1><a href="${pageContext.request.contextPath}/">MySite</a></h1>
                 
 	        <!-- 로그인성공(세션에 값이 있을때) -->
 	        <c:if test="${sessionScope.authUser !=null}">
