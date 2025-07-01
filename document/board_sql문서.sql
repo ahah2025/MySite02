@@ -10,6 +10,7 @@ use web_db;
 show tables;
 
 -- 테이블 삭제
+drop table board;
 
 -- board(게시판)테이블 생성
 create table board(
@@ -23,6 +24,35 @@ create table board(
     references user(no)
 );
 
+-- 조회
 select * 
+from user
+;
+
+-- 게시물 등록
+insert into board
+values(null, 6, '여섯번째 게시물제목', '여섯번째 게시물내용', 0, now())
+;
+
+insert into board
+values(null, 7, '일곱번째 게시물제목', '일곱번째 게시물내용', 0, now())
+;
+
+
+-- 전체리스트
+select 	b.no,
+		b.title,
+        b.content,
+        b.hit,
+        date_format(b.reg_date, "%Y-%m-%d") regDate,
+        u.no userNo,
+        u.name userName
+from user u, boaruserd b
+where u.no = b.user_no
+;
+
+
+-- 전체조회
+select *
 from board
 ;

@@ -14,6 +14,7 @@ import com.javaex.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping(value="/user")
 public class UserController {
 
 	//필드
@@ -22,7 +23,7 @@ public class UserController {
 	
 	//메소드일반
 	//--회원가입폼
-	@RequestMapping(value="/user/joinform", method = {RequestMethod.GET, RequestMethod.POST}   )
+	@RequestMapping(value="/joinform", method = {RequestMethod.GET, RequestMethod.POST}   )
 	public String joinForm() {
 		System.out.println("UserController.joinForm()");
 		
@@ -30,7 +31,7 @@ public class UserController {
 	}
 	
 	//--회원가입
-	@RequestMapping(value="/user/join", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/join", method = {RequestMethod.GET, RequestMethod.POST})
 	public String join(@ModelAttribute UserVO userVO) {
 		System.out.println("UserController.join()");
 		
@@ -51,7 +52,7 @@ public class UserController {
 	}
 	
 	//--로그인폼
-	@RequestMapping(value="/user/loginform", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/loginform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String loginForm() {
 		System.out.println("UserController.loginForm()");
 		
@@ -60,7 +61,7 @@ public class UserController {
 	
 	
 	//--로그인
-	@RequestMapping(value = "/user/login", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(@ModelAttribute UserVO userVO, HttpSession session) {
 		System.out.println("UserController.login()");
 		
@@ -74,7 +75,7 @@ public class UserController {
 	}
 	
 	//--로그아웃
-	@RequestMapping(value="/user/logout", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/logout", method= {RequestMethod.GET, RequestMethod.POST})
 	public String logout(HttpSession session) {
 		System.out.println("UserController.logout()");
 	
@@ -87,11 +88,11 @@ public class UserController {
 	
 	
 	//--회원정보수정폼
-	@RequestMapping(value="/user/editform", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/editform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String editForm(HttpSession session, Model model) {		
 		System.out.println("UserController.editForm()");
 		
-		//세션에서 no값을 가져온다
+		//세션에 값이 있는지 가져온다
 		UserVO authUser = (UserVO)session.getAttribute("authUser");
 				
 		if(authUser == null) { //로그인 안했을때
@@ -116,7 +117,7 @@ public class UserController {
 	}
 	
 	//--회원정보 수정
-	@RequestMapping(value="/user/edit", method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/edit", method={RequestMethod.GET, RequestMethod.POST})
 	public String edit(@ModelAttribute UserVO userVO, HttpSession session) {
 		System.out.println("UserController.edit()");
 		

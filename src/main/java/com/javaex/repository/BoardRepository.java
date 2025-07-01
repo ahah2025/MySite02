@@ -1,6 +1,8 @@
 package com.javaex.repository;
+//Repository(DAO)는 커리문 하나만 시킨다
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,41 +18,22 @@ public class BoardRepository {
 	private SqlSession sqlSession;	
 	
 	//메소드일반
-	//-- 전체리스트 가져오기(게시판리스트)
+	//--전체리스트 가져오기(게시판리스트)
 	public List<BoardVO> boardSelectList() {
 		System.out.println("BoardRepository.boardSelectList()");
-		
+
 		List<BoardVO> boardList = sqlSession.selectList("board.selectList");
-		
+
 		return boardList;
 	}
-	
-	//--board 정보 가져오기
-	public BoardVO boardSelectOne(BoardVO boardVO) {
-		System.out.println("BoardRepository.boardSelectOne");
+
+	//--전체리스트 가져오기2(페이징)
+	public List<BoardVO> boardSelectList2(Map<String, Integer> limitMap) {
+		System.out.println("BoardRepository.boardSelectList2()");
 		
-		BoardVO board02 = sqlSession.selectOne("board.selectOne", boardVO);  
+		System.out.println(limitMap);
 		
-		return board02;
-	}
-	
-	//board 정보 가져오기(no) --> 수정폼
-	public BoardVO boardSelectByNo(int no) {
-		System.out.println("BoardRepository.boardSelectByNo()");
-		
-		BoardVO boardVO = sqlSession.selectOne("board.boardSelectByNo", no);
-		
-		return boardVO;
-		
-	}	
-	
-	//board 정보 수정
-	public int boardUpdate(BoardVO boardVO) {
-		System.out.println("BoardRepository.boardUpdate");
-		
-		int i = sqlSession.update("board.update",boardVO);
-		
-		return i;
+		return null;
 	}
 	
 	
