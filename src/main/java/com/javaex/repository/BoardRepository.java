@@ -31,10 +31,21 @@ public class BoardRepository {
 	public List<BoardVO> boardSelectList2(Map<String, Integer> limitMap) {
 		System.out.println("BoardRepository.boardSelectList2()");
 		
-		System.out.println(limitMap);
+		List<BoardVO> boardList =sqlSession.selectList("board.selectList2", limitMap);
 		
-		return null;
+		return boardList;
 	}
 	
+
+	//--전체글갯수(페이징)
+	public int selectTotalCount() {
+		System.out.println("BoardRepository.selectTotalCount()");
+		
+		int totalCount = sqlSession.selectOne("board.selectTotalCount");
+		
+		return totalCount;
+	}
+		
 	
 }
+ 

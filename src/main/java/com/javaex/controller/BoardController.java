@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,13 +40,18 @@ public class BoardController {
 	
 	//--게시판 전체 리스트2(페이징)
 	@RequestMapping(value="/list2", method= {RequestMethod.GET, RequestMethod.POST})
-	public String list2(@RequestParam("crtpage") int crtPage) {
+	public String list2(@RequestParam(value="crtpage", required = false, 
+	defaultValue = "1") int crtPage, Model model ) {
+		
 		System.out.println("BoardController.list2()");
 		
-		boardService.exeList2(crtPage);
+		Map<String, Object> pMap = boardService.exeList2(crtPage);
+		
+		model.addAttribute("pMap", pMap);
+		System.out.println(pMap);
 		
 		
-		return "";
+		return "board/list2";
 	}	
 	
 	
@@ -58,17 +64,7 @@ public class BoardController {
 	}
 	
 	//글쓰기
-	@RequestMapping(value = "/board/writing", method = { RequestMethod.GET, RequestMethod.POST })
-	public String Writing(BoardVO boardVO, HttpSession session) {
-		System.out.println("boardController.Writing()");
-		
-		BoardVO board01 = boardService.exeWriting(boardVO);
-		System.out.println(board01);
-		
-		session.setAttribute("board01", board01);
-		
-		return "redirect:/";		
-	}
+
 	
 	//삭제 --- 정상적으로 보임
 	@RequestMapping(value="/board/remove",method={RequestMethod.GET,RequestMethod.POST})
@@ -94,7 +90,7 @@ public class BoardController {
 
 			int b01 = board01.getNo();
 			
-			BoardVO boardVO = boardService.exeEditeForm(b01);
+			BoardVO boardVO = boardService.editForm(b01);
 			
 			//boardVO 모델에 담는다 --> D.S야 request의 어트리뷰트에 넣어라
 			model.addAttribute("BoardVO", boardVO);

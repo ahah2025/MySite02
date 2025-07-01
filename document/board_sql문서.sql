@@ -47,7 +47,7 @@ select 	b.no,
         date_format(b.reg_date, "%Y-%m-%d") regDate,
         u.no userNo,
         u.name userName
-from user u, boaruserd b
+from user u, board b
 where u.no = b.user_no
 ;
 
