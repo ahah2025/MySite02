@@ -88,12 +88,9 @@ public class BoardController {
 		
 		}else { 
 
-			int b01 = board01.getNo();
-			
-			BoardVO boardVO = boardService.editForm(b01);
-			
+						
 			//boardVO 모델에 담는다 --> D.S야 request의 어트리뷰트에 넣어라
-			model.addAttribute("BoardVO", boardVO);
+			model.addAttribute("BoardVO");
 		}
 		
 		return "board/editform";
