@@ -69,5 +69,4 @@ from board
 select count(*) count
 from board
 where title like '%12%'
-limit 0, 10
 ;

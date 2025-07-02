@@ -21,13 +21,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	
 	//메소드일반
 	//--회원가입폼
 	@RequestMapping(value="/joinform", method = {RequestMethod.GET, RequestMethod.POST}   )
 	public String joinForm() {
-		System.out.println("UserController.joinForm()");
+		System.out.println("UserController.joinform()");
 		
-		return "user/joinForm";
+		return "user/joinform";
 	}
 	
 	//--회원가입
@@ -56,7 +57,7 @@ public class UserController {
 	public String loginForm() {
 		System.out.println("UserController.loginForm()");
 		
-		return "user/loginForm";
+		return "user/loginform";
 	}
 	
 	
