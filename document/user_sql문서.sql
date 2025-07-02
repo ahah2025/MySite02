@@ -59,3 +59,15 @@ set name = '이효리',
     gender = 'female'
 where no = 1
 ;
+
+-- 전체 글 갯수 구하기
+select count(*) count
+from board
+;
+
+-- 1 이라는 숫자 포함된것  count(105)
+select count(*) count
+from board
+where title like '%12%'
+limit 0, 10
+;

@@ -80,7 +80,7 @@
 				<div classs = "paging">
 					<ul class="clearfix">
 					<c:if test="${requestScope.pMap.prev}">
-						<li><a href="${pageContext.request.contextPath}/board/list2?crtpage=${requestScope.pMap.startPageBtnNo-1}">◀</a></li>
+						<li><a href="${pageContext.request.contextPath}/board/list3?crtpage=${requestScope.pMap.startPageBtnNo-1}">◀</a></li>
 					</c:if>
 					<c:forEach begin="${requestScope.pMap.startPageBtnNo}" 
 									           end="${requestScope.pMap.endPageBtnNo}"
@@ -88,15 +88,15 @@
 									    
 						<c:choose>
 							<c:when test="${param.crtpage == page}">
-								<li class="active"><a  href="${pageContext.request.contextPath}/board/list2?crtpage=${page}">${page}</a></li>	
+								<li class="active"><a  href="${pageContext.request.contextPath}/board/list3?crtpage=${page}&kwd=${param.kwd}">${page}</a></li>	
 							</c:when>
 							<c:otherwise>
-								<li><a  href="${pageContext.request.contextPath}/board/list2?crtpage=${page}">${page}</a></li>
+								<li><a  href="${pageContext.request.contextPath}/board/list3?crtpage=${page}&kwd=${param.kwd}">${page}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 						<c:if test="${requestScope.pMap.next}">
-							<li><a href="${pageContext.request.contextPath}/board/list2?crtpage=${requestScope.pMap.endPageBtnNo+1}">▶</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/list3?crtpage=${requestScope.pMap.endPageBtnNo+1}">▶</a></li>
 						</c:if>
 					</ul>
 				</div>

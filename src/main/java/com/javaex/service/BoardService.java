@@ -15,7 +15,8 @@ public class BoardService {
 
 	//필드
 	@Autowired
-	private BoardRepository boardRepository;	
+	private BoardRepository boardRepository;
+	private Object kwd;	
 	
 	//메소드일반
 	
@@ -51,7 +52,7 @@ public class BoardService {
 		limitMap.put("startRowNo", startRowNo);
 		limitMap.put("listCnt", listCnt);
 		
-		//레파이토리에 보낸다
+		//레파지토리에 보낸다
 		List<BoardVO> boardList = boardRepository.boardSelectList2(limitMap);
 		
 		////////////////////////////////////////////////////////
@@ -60,8 +61,8 @@ public class BoardService {
 
 		//페이지당 버튼갯수
 		int pageBtnCount = 5;
-
-
+		
+		
 		//마지막 버튼 번호 endPageBtnNo
 		/*
 		 1  2  3  4  5  >
@@ -85,7 +86,7 @@ public class BoardService {
 		 11-> 올림(11/5)5 --> 2.2(3)*5  -->15
 		*/
 		int endPageBtnNo = ((int)Math.ceil(crtPage/((double)pageBtnCount)))*pageBtnCount;
-
+		           
 		
 		//시작 버튼 번호 startPageBtnNo
 		/*
@@ -96,8 +97,8 @@ public class BoardService {
 		 13페이지이면       (마지막페이지번호-페이지당버튼갯수)+1
 		 */
 		int startPageBtnNo = (endPageBtnNo - pageBtnCount)+1;
-
-
+		
+		
 		//다음 화살표 유무 next
 		/* 총글수와 연관이 있음  , 한페이지당 글갯수
 		 1)
@@ -110,7 +111,7 @@ public class BoardService {
 		 1  2  3  4  5  
 		 한페이지당글갯수(10)*5 >  전체글갯수(49)    --> false
 		*/
-
+		
 		//--전체글갯수
 		int totalCount = boardRepository.selectTotalCount();
 		boolean next = false;
@@ -120,7 +121,7 @@ public class BoardService {
 	    	//181 --> 19page  181/10 --> 18.1  --> 19 올림처리한다
 	    	
 	    	endPageBtnNo = (int)Math.ceil(totalCount/((double)listCnt));                 
-	    }
+	    }		
 
 		//이전 화살표 유무 prev
 	    boolean prev = false;
@@ -128,17 +129,87 @@ public class BoardService {
 	    	prev = true;
 	    }
 	    
+	    
 	    //모두 묶어서 컨트롤러에 리턴해준다 --> Map 사용
 	    Map<String, Object> pMap = new HashMap<String, Object>();
 	    pMap.put("boardList", boardList);  //리스트
-
+	   
 	    pMap.put("prev", prev);  //이전버튼 유무
 	    pMap.put("next", next);  //다음버튼 유무
 	    pMap.put("startPageBtnNo", startPageBtnNo);  //시작버튼 번호
 	    pMap.put("endPageBtnNo", endPageBtnNo);  //마지막버튼 번호
-
-		return (List<BoardVO>) pMap;
+		return pMap;
 	}
 
+
+	//--게시판 전체리스트3(페이징+검색)
+	public Map<String, Object> exeList3(int crtPage, String kwd) {
+		System.out.println("BoardService.exeList3()");
+		
+		System.out.println(crtPage);
+		System.out.println(kwd);
+		
+		////////////////////////////////////////////////////////
+		///리스트 가져오기
+		////////////////////////////////////////////////////////
+		//한페이지의 출력갯수
+		int listCnt = 10;
+		
+		//시작번호
+		int startRowNo = (crtPage-1)*listCnt;
+		
+		//두개의 데이터를 묶는다 -->Map사용
+		Map<String, Object> limitMap = new HashMap<String, Object>();
+		limitMap.put("startRowNo", startRowNo);
+		limitMap.put("listCnt", listCnt);
+		limitMap.put("kwd", kwd);	
+		
+		//레파지토리에 보낸다
+		List<BoardVO> boardList = boardRepository.boardSelectList3(limitMap);
+		
+		////////////////////////////////////////////////////////
+		///페이징버튼 (하단 버튼)
+		////////////////////////////////////////////////////////
+
+		//페이지당 버튼갯수
+		int pageBtnCount = 5;
+
+		//마지막 버튼 번호 endPageBtnNo
+		int endPageBtnNo = ((int)Math.ceil(crtPage/((double)pageBtnCount)))*pageBtnCount;
+
+		//시작 버튼 번호 startPageBtnNo
+		int startPageBtnNo = (endPageBtnNo - pageBtnCount)+1;
+
+		//--전체글갯수
+		int totalCount = boardRepository.selectTotalCountByKwd(kwd);
+		
+		boolean next = false;
+		if(listCnt*endPageBtnNo < totalCount) { //한페이지당글갯수(10)*마지막 버튼 번호(5) <  전체글갯수(51)  
+			next = true;
+		}else { //다음 화살표가 false 일때 마지막 버튼 번호를 다시계산해야한다
+	    	//181 --> 19page  181/10 --> 18.1  --> 19 올림처리한다
+	    	
+	    	endPageBtnNo = (int)Math.ceil(totalCount/((double)listCnt));                 
+	    }
+
+		
+		//이전 화살표 유무 prev
+	    boolean prev = false;
+	    if(startPageBtnNo != 1) {
+	    	prev = true;
+	    }
+	    
+	    
+	    //모두 묶어서 컨트롤러에 리턴해준다 --> Map 사용
+	    Map<String, Object> pMap = new HashMap<String, Object>();
+	    pMap.put("boardList", boardList);  //리스트
+	   
+	    pMap.put("prev", prev);  //이전버튼 유무
+	    pMap.put("next", next);  //다음버튼 유무
+	    pMap.put("startPageBtnNo", startPageBtnNo);  //시작버튼 번호
+	    pMap.put("endPageBtnNo", endPageBtnNo);  //마지막버튼 번호
+	    		
+		return pMap;
+	}	
 	
 }
