@@ -44,7 +44,7 @@ public class BoardController {
 						Model model ) {
 		System.out.println("BoardController.list2()");
 
-		Map<String, Object> pMap = boardService.exeList2(crtPage);
+		Map<String, Object> pMap = (Map<String, Object>) boardService.exeList2(crtPage);
 
 		model.addAttribute("pMap", pMap);
 		System.out.println(pMap);

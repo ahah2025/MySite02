@@ -80,7 +80,7 @@
 				<div classs = "paging">
 					<ul class="clearfix">
 					<c:if test="${requestScope.pMap.prev}">
-						<li><a href="${pageContext.request.contextPath}/board/list3?crtpage=${requestScope.pMap.startPageBtnNo-1}">◀</a></li>
+						<li><a href="${pageContext.request.contextPath}/board/list3?crtpage=${requestScope.pMap.startPageBtnNo-1}&kwd=${param.kwd}">◀</a></li>
 					</c:if>
 					<c:forEach begin="${requestScope.pMap.startPageBtnNo}" 
 									           end="${requestScope.pMap.endPageBtnNo}"
@@ -108,7 +108,6 @@
 	</div>
 							
 								
-
 			<!----------------------  footer------------------------------------------------>
        		<c:import url="/WEB-INF/views/include/footer.jsp" > </c:import>
     		<!----------------------  footer------------------------------------------------>

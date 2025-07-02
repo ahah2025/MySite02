@@ -138,7 +138,7 @@ public class BoardService {
 	    pMap.put("next", next);  //다음버튼 유무
 	    pMap.put("startPageBtnNo", startPageBtnNo);  //시작버튼 번호
 	    pMap.put("endPageBtnNo", endPageBtnNo);  //마지막버튼 번호
-		return pMap;
+		return (List<BoardVO>) pMap;
 	}
 
 
