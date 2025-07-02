@@ -38,7 +38,26 @@
                                 자바 수업 + 데이터베이스 수업 + 웹프로그래밍 수업<br>
                                 배운 거 있는거 없는 거 다 합쳐서 만들어 놓은 사이트 입니다.<br>
                                 <br>
-                                (자유롭게 꾸며보세요!!)
+                                MyBatis2.x(IBatis)의 후속으로 등장한 ORM 프레임워크입니다
+                                <br>
+                                이미 익숙한 SQL를 그대로 사용하고 JDBC코드의 불편함을 제거하였으며
+                                <br>
+                                가장 큰 특징은 SQL을 자바코드에서 분리해서 별도의 XML 파일 안에 작성하고 관리 할 수 있는것 입니다.
+                                <br>
+                                MyBatis의 DAO(Repository)는 SQLSession 인터페이스를 구현한 클래스의 객체를 DI받아 사용합니다.
+                                <br>
+                                MyBatis의 DAO는 SQLSessionDaoSupport 추상 클래스를 상속받아 구현하기도 합니다.
+                                <br>
+                                Mapper 인터페이스를 통한 OR 매핑 기능을 지원합니다.
+                                <br>
+                                이 중에 SQLSession 인터페이스를 구현한 클래스의 객체의 DI 방식을 주로 사용하게 됩니다.
+                                <br>
+                                SQLSession 인터페이스를 구현한 SQLSessionTemplate 클래스를 사용한다.
+                                <br>
+                                결과의 칼럼 이름과 resultType의 class의 필드명이 다른 경우(컬럼명 alias 사용)
+                                <br>
+                                <![CDATA[ "이 곳에 내용을 기재 하면 '<' 부등호 또는 -와 같은 기호를 사용해도 태그에는 문제가 되지 않습니다"  ]]>
+                                <br>
                                 <br>
                                 <br>
                                 <br>

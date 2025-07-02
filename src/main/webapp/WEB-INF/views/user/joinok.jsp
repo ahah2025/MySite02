@@ -47,7 +47,7 @@
                                 회원가입을 축하합니다.<br>
                                 이제 로그인하여 다양한 서비스를 이용해보세요.
                                 <br><br>
-                                <a class="btn btn-gray btn-sm" href="/user/loginform.html">로그인</a>
+                                <a class="btn btn-gray btn-sm" href="/user/loginform.jsp">로그인</a>
                                 <a class="btn btn-gray btn-sm" href="/">홈으로</a>
                             </p>
                         </div>
