@@ -1,15 +1,19 @@
 package com.javaex.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.javaex.service.GbookService;
 
 @Controller
 @RequestMapping(value="/main")
 public class GBmainController {
 
 	//필드
-	
+	@Autowired
+	private GbookService gbookService;	
 	
 	
 	//--1 방명록 번호(no),제목(title), 작성자(writer), 등록 날짜(regDate)
@@ -19,15 +23,15 @@ public class GBmainController {
 	//--5 제목(title), 내용(content), 작성자(writer)를 조합하여 방명록 검색 가능
 	
 	//메소드일반
-	//--방명록 등록
-	@RequestMapping(value="/GBmain", method = {RequestMethod.GET, RequestMethod.POST}   )
+	//--방명록 메인 페이지
+	@RequestMapping(value="/gbookmain", method = {RequestMethod.GET, RequestMethod.POST}   )
 	public String add() {
-		System.out.println("GBmainController.GBmain(main화면)");
+		System.out.println("GBmainController.Gbookmain(main화면)");
 		
 		return "";
 	}
 
-
+	
 
 
 
