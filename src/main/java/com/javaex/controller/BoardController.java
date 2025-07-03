@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVO;
 
-import jakarta.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping(value="/board")
 public class BoardController {
