@@ -16,7 +16,7 @@ import com.javaex.vo.BoardVO;
 @Controller
 @RequestMapping(value="/board")
 public class BoardController {
-
+	//2025-07-03
 	//필드
 	@Autowired
 	private BoardService boardService;
