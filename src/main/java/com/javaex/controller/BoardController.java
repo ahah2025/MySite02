@@ -53,12 +53,12 @@ public class BoardController {
 
 	
 	//--게시판 전체 리스트3(페이징)
-	@RequestMapping(value="/list3", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value={"", "/", "/list3"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String list3(@RequestParam(value="crtpage", required = false, defaultValue = "1") int crtPage, 
 						@RequestParam(value="kwd", required = false, defaultValue = "") String kwd,
 						Model model ) {
 		System.out.println("BoardController.list3()");
-		
+
 		Map<String, Object> pMap = boardService.exeList3(crtPage, kwd);
 		System.out.println("-------------------------------");
 		System.out.println(pMap);
@@ -66,58 +66,21 @@ public class BoardController {
 		
 		
 		model.addAttribute("pMap", pMap);
-
+		
 		return "board/list3";
 	}	
 	
 	
 	//글쓰기 폼
-	/*
-	@RequestMapping(value="/board/writeform", method= {RequestMethod.GET, RequestMethod.POST})
-	public String WritingForm() {
-		System.out.println("BoardController.writeform");
-		
-		return "board/writeForm";
-	}
-	*/
-	
+
 	//글쓰기
 
-	
-	//삭제 --- 정상적으로 보임
-	/*
-	@RequestMapping(value="/board/remove",method={RequestMethod.GET,RequestMethod.POST})
-	public String remove() {
-		System.out.println("boardController.remove");
-		
-		return "guestbook/removeform";	
-	}
-	
-	
-	//수정폼
-	/*
-	@RequestMapping(value="/board/editeform", method= {RequestMethod.GET, RequestMethod.POST})
-	public String editeForm(HttpSession session, Model model) {		
-		System.out.println("BoardController.editeForm()");
-		
-		//세션에서 no값을 가져온다
-		BoardVO board01 = (BoardVO)session.getAttribute("board01");
-				
-		if(board01 == null) {
-			
-			return "guestbook/removeform";
-		
-		}else { 
+	//--수정폼
 
-						
-			//boardVO 모델에 담는다 --> D.S야 request의 어트리뷰트에 넣어라
-			model.addAttribute("BoardVO");
-		}
-		
-		return "board/editform";
-	}
-	*/	
-	
-	//수정
+
+	//--수정
+
+
+	//--삭제
 
 }

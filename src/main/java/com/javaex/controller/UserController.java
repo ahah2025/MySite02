@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVO;
@@ -144,5 +145,20 @@ public class UserController {
 		//메인리다이렉트 시킨다
 		return "redirect:/";
 	}
+	
+	//아이디사용유무체크(회원가입)
+	@RequestMapping(value="/idcheck", method= {RequestMethod.GET, RequestMethod.POST} )
+	public String idcheck(@RequestParam(value="id") String id, Model model) {
+		System.out.println("UserController.idcheck()");
+		
+		boolean isUse = userService.exeIdcheck(id);
+		System.out.println(isUse);
+		
+		model.addAttribute("isUse", isUse);
+		
+		return "user/joinform";
+	}
+		
+	
 	
 }

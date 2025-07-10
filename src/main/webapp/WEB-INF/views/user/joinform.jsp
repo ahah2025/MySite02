@@ -7,9 +7,12 @@
     <head>
         <meta charset="UTF-8">
         <title>MySite</title>
+        <!-- css -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
+        <!-- js -->
+        <script src = "${pageContext.request.contextPath}/assets/js/jquery/jquery-3.7.1.js"></script>       
     </head>
 
     <body>
@@ -46,7 +49,9 @@
                             <div class="info-row">
                                 <label class="info-title" for="txt-idcheck">아이디</label>
                                 <input id="txt-idcheck" type="text" name="id" value="">
-                                <button id="" class="btn btn-gray btn-input"  type="button">중복체크</button>
+                                <button id="btncheck" class="btn btn-gray btn-input"  type="button">중복체크</button>
+                           	
+                            	
                             </div>
                             <div class="info-row">
                                 <label class="info-title" for="txt-pwd">패스워드</label>
@@ -86,6 +91,51 @@
     		<!----------------------  footer------------------------------------------------>
        		
         </div>
-     
+<!-- ------------------------------- -->     
+<script>
+//돔이 완료되었을때
+$(document).ready(function(){
+	console.log('돔트리완료');
+	
+	//아이디체크 버튼을 클릭했을때
+	console.log($('#btncheck'))
+	$('#btncheck').on('click',function(){
+		console.log('아이디체크 버튼 클릭');
+		
+		//입력한 아이디
+		let id = $('#txt-idcheck').val();
+		console.log(id);
+
+		console.log('서버랑 통신');
+		//서버랑 통신(주소치고엔터) --> 데이터만 받을거야
+		 
+		$.ajax({
+
+			url : "${pageContext.request.contextPath}/user/idcheck?",
+			type : "post",
+	
+			//contentType : "application/json",
+	
+			data : {id:id},
+	
+			dataType : "json",
+			success : function(result){
+				/*성공시 처리해야될 코드 작성*/
+			},
+	
+			error : function(XHR, status, error) {
+	
+			console.error(status + " : " + error);
+	
+			}
+
+		});  //$.ajax({  !!--------------END!!!!!!!!!!!!!!!!!!!!!!
+
+
+	});  //$('#btncheck').on('click',function(){ !!--------------END!!!!!!!!!!!!!!!!!!!!!!
+	
+	
+});  //$(document).ready(function(){  !!--------------END!!!!!!!!!!!!!!!!!!!!!!
+</script>
     </body>
 </html>
