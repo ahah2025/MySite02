@@ -26,8 +26,6 @@
 		]]>
 	</insert>
 	
-	
-	
 	<!-- 방명록삭제 -->
 	<delete id="delete" parameterType="com.javaex.vo.GuestbookVO">
 		<![CDATA[    
