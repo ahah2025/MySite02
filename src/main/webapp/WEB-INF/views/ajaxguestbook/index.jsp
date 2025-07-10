@@ -40,7 +40,7 @@
                     </div>
 
 					<div id="guestbook-addlist">
-						<form class="form-box" action="${pageContext.request.contextPath}/guestbook/add" method="get">
+						<form class="form-box" action="${pageContext.request.contextPath}/guestbook/add" method="">
 							<table>
 								<colgroup>
 									<col style="width: 70px;">
@@ -78,14 +78,16 @@
 							</table>
 						</form>	
 						
+						<button id="btnList" class="btn-blue btn-md " type="button">전체데이터 요청</button>
+						
 						<c:forEach items="${requestScope.gList}" var="guestbookVO">
 							<table class="guestbook-item">
-								<colgroup>
-									<col style="width: 10%;">
-									<col style="width: 40%;">
-									<col style="width: 40%;">
-									<col style="width: 10%;">
-								</colgroup>
+							<colgroup>
+								<col style="width: 10%;">
+								<col style="width: 40%;">
+								<col style="width: 40%;">
+								<col style="width: 10%;">
+							</colgroup>
 								<tbody>
 									<tr>
 										<td>${guestbookVO.no}</td>
@@ -101,8 +103,9 @@
 								</tbody>
 							</table>
 						</c:forEach>
-					</div>
-			    
+						
+			    	</div>
+			    	
                 </main>
             </div>
             

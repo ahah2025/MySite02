@@ -1,0 +1,21 @@
+package com.javaex.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class GuestBookAjaxController {
+
+	//필드
+
+
+	
+	//ajax용 메인화면
+	@RequestMapping(value="/ajaxindex", method= {RequestMethod.GET, RequestMethod.POST}  )
+	public String ajaxindex() {
+		System.out.println("GuestBookAjaxController.ajaxindex()");
+				
+		return "ajaxguestbook/index";
+	}
+}

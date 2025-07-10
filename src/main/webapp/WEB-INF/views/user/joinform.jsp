@@ -13,6 +13,17 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
         <!-- js -->
     	<script src="${pageContext.request.contextPath}/assets/js/jquery/jquery-3.7.1.js"></script>       
+    
+      <style>
+
+	     (p id="footer")  {
+	      background-color: #f0f0f0; /* 회색 음영 */
+	      padding: 20px 40px;
+	      font-family: sans-serif;
+	      font-size: 16px;
+	      text-align: center;
+	    }
+	  </style>
     </head>
 
     <body>
@@ -84,10 +95,11 @@
                 </main>
             </div>
             
-			
-				<p>
-	            Copyright ⓒ 2025 이아름. All right reserved  
-	            </p>
+
+			<!----------------------  footer------------------------------------------------>
+       		<c:import url="/WEB-INF/views/include/footer.jsp" > </c:import>
+    		<!----------------------  footer------------------------------------------------>
+       		
         </div>
 <!-- ------------------------------- -->     
 <script>
@@ -113,6 +125,7 @@ $(document).ready(function(){
 			//contentType : "application/json",
 			data : {id:id},
 	
+			//json은 문자열
 			dataType : "json",
 			success : function(result){
 				/*성공시 처리해야될 코드 작성*/

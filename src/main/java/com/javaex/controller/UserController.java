@@ -163,7 +163,7 @@ public class UserController {
 		//데이터(json형식)만 보내준다 (html 없음)
 		//json형식 {\'isUse\': '"+ isUse  +"'}
 		String result = "{\"isUse\": "+ isUse  +"}";
-		//@ResponseBody 상단에 붙이고 데이터는 return 
+		//@ResponseBody 상단에 붙이고 데이터는 return 으로 보낸다 
 		return result;
 	}
 		
