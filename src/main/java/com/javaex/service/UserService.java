@@ -51,5 +51,11 @@ public class UserService {
 		return count;
 	}
 	
+	//--아이디사용유무체크(회원가입)
+	public void exeIdcheck(String id) {
+		
+	}
+	
+	
 	
 }
