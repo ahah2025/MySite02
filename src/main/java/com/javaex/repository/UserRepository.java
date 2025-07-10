@@ -41,7 +41,7 @@ public class UserRepository {
 	public UserVO userSelectByNo(int no) {
 		System.out.println("UserRepository.userSelectByNo()");
 		
-		UserVO userVO = sqlSession.selectOne("user.userSelectByNo", no);
+		UserVO userVO = sqlSession.selectOne("user.selectByNo", no);
 		
 		return userVO;
 		
@@ -61,7 +61,7 @@ public class UserRepository {
 		System.out.println("UserRepository.userSelectById()");
 		System.out.println(id);
 		
-		UserVO userVO = sqlSession.selectOne("user.SelectById", id);
+		UserVO userVO = sqlSession.selectOne("user.selectOneById", id);
 		return userVO;
 	}
 	

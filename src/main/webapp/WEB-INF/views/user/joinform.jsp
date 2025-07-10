@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
         <!-- js -->
-        <script src = "${pageContext.request.contextPath}/assets/js/jquery/jquery-3.7.1.js"></script>       
+    	<script src="${pageContext.request.contextPath}/assets/js/jquery/jquery-3.7.1.js"></script>       
     </head>
 
     <body>
@@ -50,8 +50,7 @@
                                 <label class="info-title" for="txt-idcheck">아이디</label>
                                 <input id="txt-idcheck" type="text" name="id" value="">
                                 <button id="btncheck" class="btn btn-gray btn-input"  type="button">중복체크</button>
-                           	
-                            	
+                           		<p id="checkmsge"></p>
                             </div>
                             <div class="info-row">
                                 <label class="info-title" for="txt-pwd">패스워드</label>
@@ -86,10 +85,9 @@
             </div>
             
 			
-			<!----------------------  footer------------------------------------------------>
-       		<c:import url="/WEB-INF/views/include/footer.jsp" > </c:import>
-    		<!----------------------  footer------------------------------------------------>
-       		
+				<p>
+	            Copyright ⓒ 2025 이아름. All right reserved  
+	            </p>
         </div>
 <!-- ------------------------------- -->     
 <script>
@@ -98,7 +96,6 @@ $(document).ready(function(){
 	console.log('돔트리완료');
 	
 	//아이디체크 버튼을 클릭했을때
-	console.log($('#btncheck'))
 	$('#btncheck').on('click',function(){
 		console.log('아이디체크 버튼 클릭');
 		
@@ -111,22 +108,31 @@ $(document).ready(function(){
 		 
 		$.ajax({
 
-			url : "${pageContext.request.contextPath}/user/idcheck?",
+			url : "${pageContext.request.contextPath}/user/idcheck",
 			type : "post",
-	
 			//contentType : "application/json",
-	
 			data : {id:id},
 	
 			dataType : "json",
 			success : function(result){
 				/*성공시 처리해야될 코드 작성*/
+				console.log(result);
+				console.log(result.isUse);
+				
+				//상황에 맞는 메세지 출력---->저위에 있는 html 사이에 html 출력해줘야 한다
+				if(result.isUse == true){
+					$('#checkmsge').html('사용할 수 있는 아이디 입니다.');
+					$('#checkmsge').css('color','#0000ff');
+					$('#checkmsge').css('Font-weight','bold');
+				}else {
+					$('#checkmsge').html('<strong>이미 사용중인 아이디 입니다.</strong> ');
+					$('#checkmsge').css('color','#ff0000');
+					$('#checkmsge').css('Font-weight','bold');
+				}
+			
 			},
-	
 			error : function(XHR, status, error) {
-	
-			console.error(status + " : " + error);
-	
+				console.error(status + " : " + error);
 			}
 
 		});  //$.ajax({  !!--------------END!!!!!!!!!!!!!!!!!!!!!!
@@ -136,6 +142,7 @@ $(document).ready(function(){
 	
 	
 });  //$(document).ready(function(){  !!--------------END!!!!!!!!!!!!!!!!!!!!!!
+
 </script>
     </body>
 </html>
