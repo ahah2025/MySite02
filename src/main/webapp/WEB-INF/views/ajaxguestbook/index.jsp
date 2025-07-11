@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/guestbook.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal.css">
         <!-- js -->
     	<script src="${pageContext.request.contextPath}/assets/js/jquery/jquery-3.7.1.js"></script>    
     </head>
@@ -120,7 +121,30 @@
     		<!----------------------  footer------------------------------------------------>
        		
         </div>
-<!-- -------------------------------------------------- -->     
+        
+<!-- ------------------------------------------------------------------- -->        
+<!-- 모달창 css -->
+<div class="modal-bg">
+
+	<div class="modal-content">
+		<p>비밀번호 입력해 주세요</p>
+		
+		<div>
+			<input type="password" name="" value="">
+		</div>
+		<button>삭제</button>
+		<button>닫기</button>
+		
+	</div>
+	
+	
+	
+</div>
+
+      
+        
+        
+<!-- ------------------------------------------------------------------- -->        
 <script>
 $(document).ready(function(){
 	console.log('돔트리완성');
