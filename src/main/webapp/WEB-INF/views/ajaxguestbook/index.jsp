@@ -185,14 +185,14 @@ $(document).ready(function(){
 			type : 'post',
 			//contentType : "application/json",
 			data : guestbookVO,
-			
+				
 			dataType : 'json',
 			success : function(guestbookVO){
 				/*성공시 처리해야될 코드 작성*/
-				
+					
 				/* 화면에 그리기 */
 				render(guestbookVO, 'up');
-				
+					
 				/* 입력폼 비우기 */
 				$('#txt-name').val('');
 				$('#txt-password').val('');
