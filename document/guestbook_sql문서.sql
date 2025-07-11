@@ -47,19 +47,15 @@ where no = 5
 
 -- 등록
 insert into guestbook
-values(null, '선우용녀','456','다녀갑니다.',now())
+values(null, '이광수','123','다녀갑니다.',now())
 ;
 
 insert into guestbook
-values(null, '이광수','012','다녀갑니다.',now())
+values(null, '최수종','123','다녀갑니다.',now())
 ;
 
 insert into guestbook
-values(null, '서장훈','123','다녀갑니다.',now())
-;
-
-insert into guestbook
-values(null,'이효리','123','다녀갑니다',now())
+values(null,'차은우','123','다녀갑니다',now())
 ;
 
 -- 수정
