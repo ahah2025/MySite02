@@ -42,16 +42,16 @@ select  no,
         content,
         reg_date
 from guestbook
-where no = 33
+where no = 5
 ;
 
 -- 등록
 insert into guestbook
-values(null, '주우재','222','다녀갑니다.',now())
+values(null, '선우용녀','456','다녀갑니다.',now())
 ;
 
 insert into guestbook
-values(null, '정우성','123','다녀갑니다.',now())
+values(null, '이광수','012','다녀갑니다.',now())
 ;
 
 insert into guestbook

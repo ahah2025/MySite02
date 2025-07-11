@@ -42,7 +42,7 @@
                     </div>
 
 					<div id="guestbook-addlist">
-						<form class="form-box" action="${pageContext.request.contextPath}/guestbook/add" method="">
+						<form id="formAdd" class="form-box" action="" method="get">
 							<table>
 								<colgroup>
 									<col style="width: 70px;">
@@ -80,13 +80,11 @@
 							</table>
 						</form>	
 						
-						<button id="btnList" class="btn-blue btn-md " type="button">전체데이터 요청</button>
+						<!-- <button id="btnList" class="btn btn-blue btn-md" type="button">전체데이터 요청</button> -->
 						
 						<div id="gbListArea">
 						
 						</div>
-						
-						
 						
 						<c:forEach items="${requestScope.gList}" var="guestbookVO">
 							<table class="guestbook-item">
@@ -116,7 +114,6 @@
 			    	
                 </main>
             </div>
-            
 
 			<!----------------------  footer------------------------------------------------>
        		<c:import url="/WEB-INF/views/include/footer.jsp" > </c:import>
@@ -128,15 +125,66 @@
 $(document).ready(function(){
 	console.log('돔트리완성');
 	
+	//리스트데이타요청해서 화면에 리스트 그리는 함수
+	fetchList();
+	
+	/*
 	//버튼클릭할때
 	$('#btnList').on('click', function(){
 		console.log('버튼클릭');
 		
-		fetchList(); //리스트데이터요청해서 그리는 함수
-	});
+		fetchList();  //리스트데이타요청해서 그리는 함수
 
+	});
+	*/
+
+	
+	//등록버튼을 클릭했을때
+	$('#formAdd').on('submit', function(event){
+		console.log('등록버튼클릭');
+		event.preventDefault();
+		
+		//value값 수집
+		let name = $('#txt-name').val();
+		let pw = $('#txt-password').val();
+		let content = $('#text-content').val();
+		
+		//vo묶기
+		let guestbookVO = {
+			name: name,
+			password: pw,
+			content: content
+		};
+		console.log(guestbookVO);
+	
+		//서버에 저장 요청
+		$.ajax({
+		
+			url : '${pageContext.request.contextPath }/api/guestbook/add',		
+			type : 'post',
+			//contentType : "application/json",
+			data : guestbookVO,
+			
+			dataType : 'json',
+			success : function(guestbookVO){
+				/*성공시 처리해야될 코드 작성*/
+				
+				/* 화면에 그리기 */
+				render(guestbookVO, 'up');
+				
+				/* 입력폼 비우기 */
+				$('#txt-name').val('');
+				$('#txt-password').val('');
+				$('#text-content').val('')
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
 });
 
+//리스트데이타요청해서 그리는 함수
 function fetchList(){
 	$.ajax({
 		url : "${pageContext.request.contextPath }/api/guestbook/list",
@@ -151,7 +199,7 @@ function fetchList(){
 	
 			//화면에 그린다
 			for(let i=0; i<guestbookList.length; i++){
-				//render(guestbookList[i]);
+				render(guestbookList[i], 'down');
 			}
 
 		},
@@ -163,10 +211,8 @@ function fetchList(){
 	});	
 }
 
-
-	
 //guestbookVO 1개를 화면에 그린다
-function render(guestbookVO){
+function render(guestbookVO, updown){
 	console.log(guestbookVO);
 	console.log('그린다');
 	
@@ -193,11 +239,16 @@ function render(guestbookVO){
 	str += '	</tbody>';
 	str += '</table>';
 	
-	
-	$('#gbListArea').append(str);
-	
+	if(updown =='up'){
+		$('#gbListArea').prepend(str);
+		
+	}else if(updown =='down'){
+		$('#gbListArea').append(str);
+		
+	}else {
+		console.log('방향체크');
+	}
 }
-
 
 </script>
 </body>

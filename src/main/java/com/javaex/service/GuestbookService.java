@@ -41,16 +41,28 @@ public class GuestbookService {
 		return count;
 	}
 	
-
 	//-방명록 삭제하기
 	public int exeGuestbookRemove(GuestbookVO guestbookVO) {
 		System.out.println("GuestbookService.exeGuestbookRemove()");
-		
+
 		//dao를 통해서 일한다
 		//GuestbookDAO guestbookDAO = new GuestbookDAO();
 		int count = guestbookRepository.guestbookDelete(guestbookVO);
-		
+
 		return count;
+	}
+	
+	//--방명록 저장하기 key조회(ajax)
+	public GuestbookVO exeGuestbookAddKey(GuestbookVO guestbookVO) {
+		System.out.println("GuestbookService.exeGuestbookAddKey()");
+		
+		int count = guestbookRepository.guestbookInsertKey(guestbookVO); //저장키값 가져오기
+		
+		//추가된 방명록 글 가져오기
+		GuestbookVO gVO = guestbookRepository.guestbookSelectOne(guestbookVO.getNo());
+		
+		return gVO;
+		
 	}
 	
 	
