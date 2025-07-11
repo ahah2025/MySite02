@@ -129,21 +129,18 @@
 	<div class="modal-content">
 		<p>비밀번호 입력해 주세요</p>
 		
-		<div>
-			<input type="password" name="" value="">
-		</div>
-		<button>삭제</button>
-		<button>닫기</button>
-		
+		<form id="modalForm" action="" method="">
+			<div>
+				<input type="password" name="password" value="">
+				<input type="text" name="no" value="" >
+			</div>
+			<button type="submit" class="btn-dalete btn btn-blue btn-md">삭제</button>
+			<button class="btn-close btn btn-gray btn-md">닫기</button>
+		</form>	
 	</div>
-	
-	
 	
 </div>
 
-      
-        
-        
 <!-- ------------------------------------------------------------------- -->        
 <script>
 $(document).ready(function(){
@@ -206,6 +203,77 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	/*삭제(모달창 띄우기)버튼을 클릭했을때 --> 삭제모달창 */
+	$('#gbListArea').on('click', '.btn-modal',function(){
+		console.log('모달창 떠라');
+		
+		$('.modal-bg').addClass('active');
+			
+		//내가 가지고 있는 no값을  /  모달창의 no값 넣는 input박스에  넣어둔다
+		let $this = $(this);
+		let no = $this.data('no');
+		console.log(no);
+		
+		//번호 추가
+		$('#modalForm [name="no"]').val(no);
+		
+		//패스워드를 비운다
+		$('#modalForm [name="password"]').val('');
+		
+	});	
+	
+	//모달창에 닫기버튼을 클릭했을때
+	$('.btn-close').on('click',function(){
+		console.log('모달창의 닫기버튼 클릭');
+		
+		$('.modal-bg').removeClass('active');
+		
+	})
+	
+	//모달창의 삭제 버튼을 클릭했을때(진짜 삭제)
+	$('#modalForm').on('submit',function(event){
+		console.log('진짜삭제클릭');
+		event.preventDefault(); 
+		
+		//데이터 수집
+		let pw = $('#modalForm input[name="password"]').val();
+		let number = $('#modalForm input[name="no"]').val();
+		
+		let guestbookVO = {
+				no: number,
+				password: pw
+		};
+		
+		//전송
+		$.ajax({
+
+			url : '${pageContext.request.contextPath}/api/guestbook/remove',
+			type : 'post',
+			//contentType : 'application/json',
+			data : guestbookVO,
+
+			dataType : 'json',
+			success : function(result){
+			/*성공시 처리해야될 코드 작성*/
+				console.log(result);
+			
+				if(result == 1){
+					//리스트에서 선택한거 화면에서 지우기
+					$('#t'+number).remove();    //아이디를 매칭시킨다
+				}
+				
+				//모달창 닫기
+				$('.modal-bg').removeClass('active');
+			},
+			error : function(XHR, status, error) {
+			console.error(status + ' : ' + error);
+			}
+
+		});
+		
+	});
+	
 });
 
 //리스트데이타요청해서 그리는 함수
@@ -241,7 +309,7 @@ function render(guestbookVO, updown){
 	console.log('그린다');
 	
 	let str = '';
-	str += '<table class="guestbook-item">';
+	str += '<table id="t'+guestbookVO.no+'" class="guestbook-item">';
 	str += '	<colgroup>';
 	str += '		<col style="width: 10%;">';
 	str += '    	<col style="width: 40%;">';
@@ -254,7 +322,7 @@ function render(guestbookVO, updown){
 	str += '			<td>' + guestbookVO.name +'</td>';
 	str += '			<td>' + guestbookVO.regDate +'</td>';
 	str += '			<td class="txt-center">';
-	str += '				<a class="btn btn-gray btn-sm" href="">삭제</a>';
+	str += '				<button class="btn-modal btn btn-gray btn-sm" data-no="'+guestbookVO.no+'">삭제</button>';
 	str += '			</td>';
 	str += '		</tr>';
 	str += '		<tr>';
