@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class GuestBookAjaxController {
 
 	//필드
-
-
 	
 	//ajax용 메인화면
 	@RequestMapping(value="/ajaxguestbook", method= {RequestMethod.GET, RequestMethod.POST}  )

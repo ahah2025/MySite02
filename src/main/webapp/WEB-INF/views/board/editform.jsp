@@ -22,13 +22,8 @@
         	               
 
             <div class="content2 clearfix">
-                <aside>
-                    <h2>게시판</h2>
-                    <ul>
-                        <li><a href="">일반게시판</a></li>
-                        <li><a href="">댓글게시판</a></li>
-                    </ul>
-                </aside>
+				<!-- 방명록 aside ----------------------------------------------------->
+             	<c:import url="/WEB-INF/views/include/asideGuestBook.jsp" > </c:import>
 
 
 				<main>

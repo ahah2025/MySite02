@@ -23,13 +23,8 @@
         
         
 			<div class="content2 clearfix">
-             	<aside>
-                    <h2>방명록</h2>
-                    <ul>
-                        <li><a href="${pageContext.request.contextPath}/guestbook">일반방명록</a></li>
-                        <li><a href="">ajax방명록</a></li>
-                    </ul>
-                </aside>
+				<!-- 방명록 aside ----------------------------------------------------->
+             	<c:import url="/WEB-INF/views/include/asideGuestBook.jsp" > </c:import>
 
 				<main>
 					
@@ -147,18 +142,8 @@ $(document).ready(function(){
 	console.log('돔트리완성');
 	
 	//리스트데이타요청해서 화면에 리스트 그리는 함수
+	//function fetchList(){} 275번 라인
 	fetchList();
-	
-	/*
-	//버튼클릭할때
-	$('#btnList').on('click', function(){
-		console.log('버튼클릭');
-		
-		fetchList();  //리스트데이타요청해서 그리는 함수
-
-	});
-	*/
-
 	
 	//등록버튼을 클릭했을때
 	$('#formAdd').on('submit', function(event){
@@ -181,7 +166,7 @@ $(document).ready(function(){
 		//서버에 저장 요청
 		$.ajax({
 		
-			url : '${pageContext.request.contextPath }/api/guestbook/add',		
+			url : '${pageContext.request.contextPath }/api/guestbooks',		
 			type : 'post',
 			//contentType : "application/json",
 			data : guestbookVO,
@@ -241,15 +226,14 @@ $(document).ready(function(){
 		let number = $('#modalForm input[name="no"]').val();
 		
 		let guestbookVO = {
-				no: number,
-				password: pw
+			password: pw
 		};
 		
 		//전송
 		$.ajax({
 
-			url : '${pageContext.request.contextPath}/api/guestbook/remove',
-			type : 'post',
+			url : '${pageContext.request.contextPath}/api/guestbooks/'+number,
+			type : 'delete',
 			//contentType : 'application/json',
 			data : guestbookVO,
 
@@ -279,8 +263,11 @@ $(document).ready(function(){
 //리스트데이타요청해서 그리는 함수
 function fetchList(){
 	$.ajax({
-		url : "${pageContext.request.contextPath }/api/guestbook/list",
-		type : "post",
+		//url : "https://raw.githubusercontent.com/clz2025-red/api/refs/heads/main/guestbook",
+		
+		url : "${pageContext.request.contextPath }/api/guestbooks",
+		type : "get",
+		
 		//contentType : "application/json",
 		//data : {name: ”홍길동"},
 
