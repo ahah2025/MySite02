@@ -3,21 +3,18 @@ package com.javaex.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVO;
 
 //데이타로 응답하는 애들
-@Controller
+@RestController  //@Controller + ResponseBody 합쳐진 것!
 public class GuestBookApiController {
 
 	//필드
@@ -31,8 +28,8 @@ public class GuestBookApiController {
 	
 	//메소드
 	//--전체리스트
-	@ResponseBody
-	@GetMapping(value="/api/guestbooks")
+	@GetMapping("/api/guestbooks")
+	//@GetMapping(value="/api/guestbooks")
 	public List<GuestbookVO> list() {
 		System.out.println("GuestbookApiController.list");
 		
@@ -43,8 +40,7 @@ public class GuestBookApiController {
 	}
 
 	//--방명록저장
-	@ResponseBody
-	@PostMapping(value="/api/guestbooks")
+	@PostMapping("/api/guestbooks")
 	public GuestbookVO add(@ModelAttribute GuestbookVO guestbookVO) {
 		System.out.println("GuestbookApiController.add()");
 		
@@ -56,7 +52,6 @@ public class GuestBookApiController {
 	}
 	
 	//--방명록 삭제
-	@ResponseBody
 	@DeleteMapping(value="/api/guestbooks/{number}")
 	public int remove(@ModelAttribute GuestbookVO guestbookVO,
 					  @PathVariable(value="number")int number

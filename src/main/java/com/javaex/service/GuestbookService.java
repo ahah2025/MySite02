@@ -57,7 +57,7 @@ public class GuestbookService {
 		System.out.println("GuestbookService.exeGuestbookAddKey()");
 		
 		int count = guestbookRepository.guestbookInsertKey(guestbookVO); //저장키값 가져오기
-		
+	
 		//추가된 방명록 글 가져오기
 		GuestbookVO gVO = guestbookRepository.guestbookSelectOne(guestbookVO.getNo());
 		

@@ -47,10 +47,9 @@ public class GuestbookRepository {
 	//저장하고 키가져오기(ajax)
 	public int guestbookInsertKey(GuestbookVO guestbookVO) {
 		System.out.println("GuestbookRepository.guestbookInsertKey()");
-			
-		int count = sqlSession.insert("guestbook.insertkey", guestbookVO);
-		
-		return guestbookVO.getNo();
+
+		int count = sqlSession.insert("guestbook.insertKey", guestbookVO);
+		return count;
 	} 
 	
 	//글1개 가져오기
