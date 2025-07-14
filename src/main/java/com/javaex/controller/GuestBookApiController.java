@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaex.service.GuestbookService;
+import com.javaex.util.JsonResult;
 import com.javaex.vo.GuestbookVO;
 
 //데이타로 응답하는 애들
@@ -30,30 +31,38 @@ public class GuestBookApiController {
 	//--전체리스트
 	@GetMapping("/api/guestbooks")
 	//@GetMapping(value="/api/guestbooks")
-	public List<GuestbookVO> list() {
+	public JsonResult list() {
 		System.out.println("GuestbookApiController.list");
 		
 		List<GuestbookVO> guestbookList = guestbookService.exeGetGuestbookList();
 		System.out.println(guestbookList);
 		
-		return guestbookList;
+		if(guestbookList != null) {
+			return JsonResult.success(guestbookList);
+		}else {
+			return JsonResult.fail("알수 없는 오류");
+		}
 	}
 
 	//--방명록저장
 	@PostMapping("/api/guestbooks")
-	public GuestbookVO add(@ModelAttribute GuestbookVO guestbookVO) {
+	public JsonResult add(@ModelAttribute GuestbookVO guestbookVO) {
 		System.out.println("GuestbookApiController.add()");
 		
 		//guestbookVO(3) --> gVO(4, 출력용)
 		GuestbookVO gVO= guestbookService.exeGuestbookAddKey(guestbookVO);
-	
-		return gVO;
+		
+		if(gVO != null) {
+			return JsonResult.success(gVO);
+		}else {
+			return JsonResult.fail("저장 실패");
+		}
 		
 	}
 	
 	//--방명록 삭제
 	@DeleteMapping(value="/api/guestbooks/{number}")
-	public int remove(@ModelAttribute GuestbookVO guestbookVO,
+	public JsonResult remove(@ModelAttribute GuestbookVO guestbookVO,
 					  @PathVariable(value="number")int number
 			) {
 		System.out.println("GuestbookApiController.remove()");
@@ -67,7 +76,12 @@ public class GuestBookApiController {
 		
 		int count = guestbookService.exeGuestbookRemove(guestbookVO);
 		
-		return count;
+		if(count == 1) {
+			return JsonResult.success(count);
+		}else {
+			return JsonResult.fail("패스워드 틀림");
+		}
+		
 	}
 	
 }
