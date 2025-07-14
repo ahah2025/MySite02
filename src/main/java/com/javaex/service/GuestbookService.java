@@ -15,10 +15,6 @@ public class GuestbookService {
 	@Autowired
 	private GuestbookRepository guestbookRepository;
 	
-	//생성자
-	
-	//메소드gs
-	
 	//메소드일반
 	//-전체방명록 리스트 가져오기
 	public List<GuestbookVO> exeGetGuestbookList() {

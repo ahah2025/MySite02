@@ -63,7 +63,7 @@ public class GuestBookApiController {
 	//--방명록 삭제
 	@DeleteMapping(value="/api/guestbooks/{number}")
 	public JsonResult remove(@ModelAttribute GuestbookVO guestbookVO,
-					  @PathVariable(value="number")int number
+					  		 @PathVariable(value="number")int number
 			) {
 		System.out.println("GuestbookApiController.remove()");
 		//guestbookVO 패스워드 값만 있다
