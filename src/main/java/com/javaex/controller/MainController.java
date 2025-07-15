@@ -1,7 +1,6 @@
 package com.javaex.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,6 +21,7 @@ public class MainController {
 		return "main/index";
 	}
 
+	/*
 	@RequestMapping(value="/{id}/{no}", method= {RequestMethod.GET, RequestMethod.POST})
 	public String index2(@PathVariable(value="id") String id,
 						 @PathVariable(value="no") int no) {
@@ -34,5 +34,6 @@ public class MainController {
 		System.out.println(no+"no 회원의 메인 사이트 정보를 가져와서 출력한다");
 		
 		return "main/index";
-	}	
+	}
+	*/	
 }

@@ -19,7 +19,7 @@ public class AttachService {
 	//생성자 메소드gs
 	
 	//메소드일반
-	public void exeUpload(MultipartFile file){
+	public String exeUpload(MultipartFile file){
 		System.out.println("AttachService.exeUpload()");
 
 		//파일저장경로
@@ -68,7 +68,6 @@ public class AttachService {
 			e.printStackTrace();
 		}
 		
-		
-		
+		return saveName;
 	}	
 }
