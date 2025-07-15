@@ -166,7 +166,4 @@ public class UserController {
 		//@ResponseBody 상단에 붙이고 데이터는 return 으로 보낸다 
 		return result;
 	}
-		
-	
-	
 }
