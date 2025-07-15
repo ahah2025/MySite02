@@ -28,11 +28,11 @@ public class AttachService {
 		//-------(1)파일정보를 추출 DB에 저장
 		//오리지널 파일명 
 		String orgName = file.getOriginalFilename();
-		System.out.println(orgName);
+		System.out.println(orgName);   //JeonSoMin.jpg
 		
 		//확장자
 		String exName = orgName.substring(orgName.lastIndexOf(".")+1); 
-		//System.out.println(exName); //.jpg
+		System.out.println(exName);  //.jpg
 		
 		//저장파일명(겹치지 않는 파일명 - 덮어쓰기 방지용)
 		String saveName = System.currentTimeMillis()+UUID.randomUUID().toString()+"."+exName;
