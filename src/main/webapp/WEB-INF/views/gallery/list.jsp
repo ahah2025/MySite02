@@ -30,7 +30,7 @@
                     </li>
 			    </ul>
                
-                 
+                <!--  
                 <ul id=login class="clearfix">
                     <li>
                         <a class="btn btn-white btn-sm" href="">로그인</a>
@@ -39,6 +39,7 @@
                         <a class="btn btn-white btn-sm" href="">회원가입</a>
                     </li>
                 </ul>
+                -->
                  
             </header>
 
@@ -176,6 +177,28 @@
                             </li>                               
 							<!-- 이미지반복영역 -->
 							
+							<c:forEach items="${requestScope.galleryList}" var="GalleryVO">
+								<table class="gallery-item" >
+									<colgroup>
+										<col style="width: 10%;">
+										<col style="width: 40%;">
+										<col style="width: 40%;">
+									  	<col style="width: 10%;">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td>${galleryVO.no}</td>
+											<td>${galleryVO.content}</td>
+											<td class="txt-center">
+												<button class="btn-del btn btn-blue btn-md" >삭제</button>
+											</td>
+										</tr>
+									</tbody>
+									
+								</table>	
+									
+							</c:forEach>
+							
 						</ul>
                     </div>
                     
@@ -236,7 +259,7 @@
 		<p class="title">이미지보기 모달창</p>
 		
 		<div id="img-view">
-            <img src="../../assets/images/Gangho-dong.jpg">
+            <img src="${pageContext.request.contextPath}/assets/images/Gangho-dong.jpg">
 
 
             <div class="img-content">
@@ -254,7 +277,7 @@
 
 </div>
 		
-<!-- 스크립트 -->
+<!-- 자바 스크립트 -->
 <script>
 $(document).ready(function(){
 	console.log('돔트리완성');
@@ -262,20 +285,75 @@ $(document).ready(function(){
 	//화면에 리스트 그리는 함수
 	fetchList();
 	
+	//아이디체크 버튼을 클릭했을때
+	$('.imgupload').on('click',function(){
+		console.log('이미지올리기 버튼 클릭');
+		
+		//클릭한 이미지
+		let images = $('.imgupload').val();
+		console.log(images);
+
+		console.log('서버랑 통신');
+		//서버랑 통신(주소치고엔터) --> 데이터만 받을거야
+		 
+		$.ajax({
+
+			url : "${pageContext.request.contextPath}/gallery/imagesupload",
+			type : "post",
+			data : {images:images},
+	
+			//json은 문자열
+			dataType : "json",
+			success : function(result){
+				/*성공시 처리해야될 코드 작성*/
+				console.log(result);
+				console.log(result.isUse);
+				
+				//상황에 맞는 메세지 출력---->저위에 있는 html 사이에 html 출력해줘야 한다
+				if(result.isUse == true){
+					$('#checkmsge').html('이미지 등록 완료');
+					$('#checkmsge').css('color','red');
+					$('#checkmsge').css('Font-weight','bold');
+				}else {
+					$('#checkmsge').html('<strong>이미지 등록 실패</strong> ');
+					$('#checkmsge').css('color','blue');
+					$('#checkmsge').css('Font-weight','bold');
+				}
+			
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+
+		});  //$.ajax({  !!--------------END!!!!!!!!!!!!!!!!!!!!!!
+
+
+	});  //$('#btncheck').on('click',function(){ !!--------------END!!!!!!!!!!!!!!!!!!!!!!
+		
+		
+		
 	//이미지올리기 버튼을 클릭했을때
 	$('#upLoad').on('submit', function(event){
 		console.log('등록버튼클릭');
 		
 		//value값 수집
-		//imgul = 이미지 업로드
-		let imgul = $('#imgupload').val();
-		console.log(imgupload);
+		let no = $('#txt-no').val();
+		let content = $('#txt-content').val();
+		
+		//vo 묶기
+		let galleryVO = {
+				no:no,
+				content:content
+		};
+		
+		console.log(galleryVO);
+		
 		
 		//서버에 저장 요청
 		$.ajax({ 
 			url : '${pageContext.request.contextPath}/gallery/upload',
 			type : 'post',
-			data : imgul,
+			data : galleryVO,
 			
 			dataType : 'json',
 			success : function(JsonResult){
@@ -290,7 +368,8 @@ $(document).ready(function(){
 					render(JsonResult.apiData, 'up');
 						
 					/* 입력폼 비우기 */
-					$('#imgupload').val('');
+					$('#txt-no').val();
+					$('#txt-content').val();
 					
 				}else {
 					console.log("이미지 업로드 실패");
@@ -325,6 +404,13 @@ $(document).ready(function(){
 	    }		
 	});
 	
+	//모달창의 닫기 버튼을 클릭했을때
+	$('.btn-close').on('click',function(){
+		console.log('모달창의 닫기버튼 클릭');
+		
+		$('.modal-bg').removeClass('active');
+		
+	});
 	
 	//리스트데이타요청해서 그리는 함수
 	function fetchList(){
@@ -355,7 +441,7 @@ $(document).ready(function(){
 			}	
 			
 		});	
-	}
+	};
 	
 	//GalleryVO 1개를 화면에 그린다
 	function render(galleryVO, updown){
@@ -373,16 +459,10 @@ $(document).ready(function(){
 		str += '    <tbody>';
 		str += '		<tr>';
 		str += '			<td>' + galleryVO.no +'</td>';
-		str += '			<td>' + galleryVO.filePath +'</td>';
-		str += '			<td>' + galleryVO.orgName +'</td>';
-		str += '			<td>' + galleryVO.saveName +'</td>';
-		str += '			<td>' + galleryVO.filesize +'</td>';
+		str += '			<td>' + galleryVO.content +'</td>';
 		str += '			<td class="txt-center">';
 		str += '				<button class="btn-del btn btn-blue btn-md" data-no="'+galleryVO.no+'">삭제</button>';
 		str += '			</td>';
-		str += '		</tr>';
-		str += '		<tr>';
-		str += '			<td colspan=4>' + galleryVO.content +'</td>';
 		str += '		</tr>';
 		str += '	</tbody>';
 		str += '</table>';
@@ -397,8 +477,7 @@ $(document).ready(function(){
 			console.log('방향체크');
 		}
 	
-	
-});
+	};
 </script>		
-	</body>
+</body>
 </html>
