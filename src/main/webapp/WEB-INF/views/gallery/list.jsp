@@ -363,7 +363,7 @@ $(document).ready(function(){
 		console.log('그린다');
 		
 		let str = '';
-		str += '<table id="t'+galleryVO.no+'" class="guestbook-item">';
+		str += '<table id="t'+galleryVO.no+'" class="gallery-item">';
 		str += '	<colgroup>';
 		str += '		<col style="width: 10%;">';
 		str += '    	<col style="width: 40%;">';
@@ -372,24 +372,26 @@ $(document).ready(function(){
 		str += '	</colgroup>';
 		str += '    <tbody>';
 		str += '		<tr>';
-		str += '			<td>' + guestbookVO.no +'</td>';
-		str += '			<td>' + guestbookVO.name +'</td>';
-		str += '			<td>' + guestbookVO.regDate +'</td>';
+		str += '			<td>' + galleryVO.no +'</td>';
+		str += '			<td>' + galleryVO.filePath +'</td>';
+		str += '			<td>' + galleryVO.orgName +'</td>';
+		str += '			<td>' + galleryVO.saveName +'</td>';
+		str += '			<td>' + galleryVO.filesize +'</td>';
 		str += '			<td class="txt-center">';
-		str += '				<button class="btn-modal btn btn-gray btn-sm" data-no="'+guestbookVO.no+'">삭제</button>';
+		str += '				<button class="btn-del btn btn-blue btn-md" data-no="'+galleryVO.no+'">삭제</button>';
 		str += '			</td>';
 		str += '		</tr>';
 		str += '		<tr>';
-		str += '			<td colspan=4>' + guestbookVO.content +'</td>';
+		str += '			<td colspan=4>' + galleryVO.content +'</td>';
 		str += '		</tr>';
 		str += '	</tbody>';
 		str += '</table>';
 		
 		if(updown =='up'){
-			$('#gbListArea').prepend(str);
+			$('#modal-view').prepend(str);
 			
 		}else if(updown =='down'){
-			$('#gbListArea').append(str);
+			$('#modal-view').append(str);
 			
 		}else {
 			console.log('방향체크');

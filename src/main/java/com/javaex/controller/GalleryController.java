@@ -40,6 +40,7 @@ public class GalleryController {
 		System.out.println("GalleryController.add()");
 		
 		galleryService.exeGalleryAdd(galleryVO);
+		System.out.println(galleryVO);
 		
 		return "gallery/list";
 	}	
