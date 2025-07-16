@@ -142,7 +142,7 @@ $(document).ready(function(){
 	console.log('돔트리완성');
 	
 	//리스트데이타요청해서 화면에 리스트 그리는 함수
-	//function fetchList(){} 275번 라인
+	//function fetchList(){}
 	fetchList();
 	
 	//등록버튼을 클릭했을때

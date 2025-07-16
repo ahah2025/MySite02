@@ -22,6 +22,16 @@ select *
 from gallery
 ;
 
+select 	no,
+		content,
+		filePath,
+		orgName,
+		saveName,
+		filesize
+from gallery
+order by no asc  
+;
+
 select  g.no,
 		u.no as user_no,
 		g.content,

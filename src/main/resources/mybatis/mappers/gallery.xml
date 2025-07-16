@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gallery">
+	
+	<!-- gallery 전체 리스트 가져오기 -->
+	<select id="selectList"  resultType="com.javaex.vo.GalleryVO">
+		<![CDATA[    
+			select 	no,
+					content,
+					filePath,
+			        orgName,
+			        saveName,
+			        filesize
+			from gallery
+		]]>
+	</select>
+	
+	<!-- gallery 저장 -->
+	<insert id="insert" parameterType="com.javaex.vo.GalleryVO">
+		<![CDATA[    
+			insert into gallery
+			values(#{no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{filesize})
+		]]>
+	</insert>	
+
+	<!-- 이미지 Key가져오기 [Insert 후, 새로들어 간 row의 Primary Key를 받아야 하는 경우]-->
+	<insert id="insertKey" parameterType="com.javaex.vo.GalleryVO">
+		<![CDATA[    
+			insert into gallery
+			values(#{no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{filesize})
+		]]>
+		
+		<selectKey keyProperty="no" resultType="int" order="AFTER">
+			<![CDATA[    
+				select last_insert_no()
+			]]>
+		</selectKey>		
+	</insert>
+	
+	<!-- 이미지 1개 가져오기 -->
+	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.GalleryVO" >
+		<![CDATA[
+			select  no,
+					content,
+			        filePath,
+			        orgName,
+			        saveName,
+			        filesize
+			from gallery
+			where no = #{no}
+		]]>
+	</select>
+	
+
+</mapper>	

@@ -13,7 +13,6 @@ public class FileVO {
 	public FileVO() {	}
 
 	public FileVO(String orgName, String exName, String saveName, String filePath, long filesize) {
-		super();
 		this.orgName = orgName;
 		this.exName = exName;
 		this.saveName = saveName;
