@@ -16,19 +16,38 @@
 		]]>
 	</select>
 	
+	<!-- 리스트(페이징)   -->
+	<select id="selectList2" parameterType="map" resultType="com.javaex.vo.GalleryVO">
+		<![CDATA[
+			select 	g.no,
+					u.no userNo,
+					g.content,
+					g.filePath,
+					g.orgName,
+					g.saveName,
+					g.fileSize
+			from gallery g, user u 
+			where g.no = u.no 
+			order by no asc
+			limit #{startRowNo}, #{listCnt}
+		]]>
+	</select>		
+		
+		
 	<!-- gallery 저장 -->
 	<insert id="insert" parameterType="com.javaex.vo.GalleryVO">
 		<![CDATA[    
 			insert into gallery
-			values(#{no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{filesize})
+			values(#{no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
 		]]>
 	</insert>	
+
 
 	<!-- 이미지 Key가져오기 [Insert 후, 새로들어 간 row의 Primary Key를 받아야 하는 경우]-->
 	<insert id="insertKey" parameterType="com.javaex.vo.GalleryVO">
 		<![CDATA[    
 			insert into gallery
-			values(#{no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{filesize})
+			values(#{no}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
 		]]>
 		
 		<selectKey keyProperty="no" resultType="int" order="AFTER">
@@ -38,6 +57,7 @@
 		</selectKey>		
 	</insert>
 	
+	
 	<!-- 이미지 1개 가져오기 -->
 	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.GalleryVO" >
 		<![CDATA[
@@ -46,7 +66,7 @@
 			        filePath,
 			        orgName,
 			        saveName,
-			        filesize
+			        fileSize
 			from gallery
 			where no = #{no}
 		]]>

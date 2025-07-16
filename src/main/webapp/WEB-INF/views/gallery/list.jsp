@@ -30,8 +30,8 @@
                     </li>
 			    </ul>
                
-                  <!--	
-               <ul class="clearfix">
+                 
+                <ul id=login class="clearfix">
                     <li>
                         <a class="btn btn-white btn-sm" href="">로그인</a>
                     </li>
@@ -39,7 +39,7 @@
                         <a class="btn btn-white btn-sm" href="">회원가입</a>
                     </li>
                 </ul>
-                 -->
+                 
             </header>
 
             <nav>

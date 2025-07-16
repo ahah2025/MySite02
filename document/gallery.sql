@@ -30,16 +30,17 @@ select 	no,
 		filesize
 from gallery
 order by no asc  
-;
+;        
 
 select  g.no,
-		u.no as user_no,
+		u.no userNo,
 		g.content,
         g.filePath,
 		g.orgName,
         g.saveName,
-        g.filesize
+        g.fileSize
 from gallery g, user u
+where g.no = u.no 
 order by no asc
 ;
 

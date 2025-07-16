@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+    	<!-- js -->
+    	<script src="${pageContext.request.contextPath}/assets/js/jquery/jquery-3.7.1.js"></script>       
+            
     </head>
 
     <body>
@@ -61,7 +64,7 @@
                                 <br>
                                 <br>
                                 <br>
-                                <a href="">[방명록에 글 남기기]</a>
+                                <a href="${pageContext.request.contextPath}/assets/views/guestbook/addlist.jsp">[방명록에 글 남기기]</a>
                             </p>
                         </div>
                     </div>
@@ -73,5 +76,42 @@
     		<!----------------------  footer------------------------------------------------>
        		
        	</div>
+<!-- 자바스크립트 -->      
+<script>
+$(document).ready(function(){
+	console.log('돔트리완성');
+
+	function fetchList(){
+		$.ajax({
+			url : "${pageContext.request.contextPath}/guestbook/add",
+			type : "get",
+			
+			dataType : "json",
+			success : function(jsonResult){
+				/*성공시 처리해야될 코드 작성*/
+				console.log(jsonResult);
+				console.log(jsonResult.result);
+				console.log(jsonResult.apiData);
+				
+				if(jsonResult.result == 'success'){
+					//화면에 그린다
+					for(let i=0; i<jsonResult.apiData.length; i++){
+						render(jsonResult.apiData[i], 'down');
+					}
+				}else {
+					console.log('알 수 없는 오류');
+				}
+				
+			},
+			
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}	
+			
+		});	
+	}
+
+});
+</script> 	
     </body>
 </html>
