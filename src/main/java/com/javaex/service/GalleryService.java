@@ -28,9 +28,9 @@ public class GalleryService {
 	public int exeGalleryAdd(GalleryVO galleryVO) {
 		System.out.println("GalleryService.exeGalleryAdd()");
 		
-		int a = galleryRepository.galleryInsert(galleryVO);
+		int imagesave = galleryRepository.galleryInsert(galleryVO);
 		
-		return a;
+		return imagesave;
 		
 	}	
 	

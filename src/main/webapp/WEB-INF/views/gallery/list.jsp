@@ -286,55 +286,56 @@ $(document).ready(function(){
 	fetchList();
 	
 	//아이디체크 버튼을 클릭했을때
-	$('.imgupload').on('click',function(){
-		console.log('이미지올리기 버튼 클릭');
+	$('#imgupload').on('click',function(event){
+		console.log('이미지 올리기 버튼 클릭');
+		event.preventDefault();
 		
 		//클릭한 이미지
-		let images = $('.imgupload').val();
+		let images = $('#imgupload').val();
 		console.log(images);
-
+		
 		console.log('서버랑 통신');
 		//서버랑 통신(주소치고엔터) --> 데이터만 받을거야
-		 
+		
 		$.ajax({
 
 			url : "${pageContext.request.contextPath}/gallery/imagesupload",
 			type : "post",
 			data : {images:images},
-	
+			
 			//json은 문자열
 			dataType : "json",
+
 			success : function(result){
 				/*성공시 처리해야될 코드 작성*/
 				console.log(result);
 				console.log(result.isUse);
 				
-				//상황에 맞는 메세지 출력---->저위에 있는 html 사이에 html 출력해줘야 한다
+				//상황에 맞는 메세지 출력
 				if(result.isUse == true){
-					$('#checkmsge').html('이미지 등록 완료');
-					$('#checkmsge').css('color','red');
-					$('#checkmsge').css('Font-weight','bold');
+					$('#savemsge').html('이미지 등록 완료');
+					$('#savemsge').css('color','red');
+					$('#savemsge').css('Font-weight','bold');
 				}else {
-					$('#checkmsge').html('<strong>이미지 등록 실패</strong> ');
-					$('#checkmsge').css('color','blue');
-					$('#checkmsge').css('Font-weight','bold');
+					$('#savemsge').html('<strong>이미지 등록 실패</strong> ');
+					$('#savemsge').css('color','blue');
+					$('#savemsge').css('Font-weight','bold');
 				}
-			
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-
-		});  //$.ajax({  !!--------------END!!!!!!!!!!!!!!!!!!!!!!
-
-
-	});  //$('#btncheck').on('click',function(){ !!--------------END!!!!!!!!!!!!!!!!!!!!!!
+			
+		});    //$.ajax({ ----------------------End
 		
-		
-		
+	});  // $('.imgupload').on('click'(){  -----------End
+	
+});  // $(document).ready(function(){ ---------------End
+	
 	//이미지올리기 버튼을 클릭했을때
 	$('#upLoad').on('submit', function(event){
 		console.log('등록버튼클릭');
+		event.preventDefault();
 		
 		//value값 수집
 		let no = $('#txt-no').val();
@@ -348,7 +349,7 @@ $(document).ready(function(){
 		
 		console.log(galleryVO);
 		
-		
+
 		//서버에 저장 요청
 		$.ajax({ 
 			url : '${pageContext.request.contextPath}/gallery/upload',
@@ -379,13 +380,13 @@ $(document).ready(function(){
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		});
-	});
-	
+			
+		});  //$.ajax({  -------------------------End
+			
 	//리스트에 있는 이미지버튼 클릭 했을때
 	$('#modal-view').on('click', function(){
 		let value = $(this).text(); // 버튼의 텍스트를 가져옴
-	
+		
 	    if (value === "C") {
 	        expression = "";
 	        $('#modal-view').val('');
@@ -402,8 +403,9 @@ $(document).ready(function(){
 	    	expression += value;
 	        $('#modal-view').val(expression);
 	    }		
-	});
-	
+	});	// $('#modal-view').on('click', function(){ -----------------End
+		
+
 	//모달창의 닫기 버튼을 클릭했을때
 	$('.btn-close').on('click',function(){
 		console.log('모달창의 닫기버튼 클릭');
@@ -415,6 +417,7 @@ $(document).ready(function(){
 	//리스트데이타요청해서 그리는 함수
 	function fetchList(){
 		$.ajax({
+	
 			url : "${pageContext.request.contextPath }/gallery",
 			type : "get",
 			
@@ -439,10 +442,13 @@ $(document).ready(function(){
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}	
-			
-		});	
-	};
+		});
+	}
 	
+	
+	
+	
+
 	//GalleryVO 1개를 화면에 그린다
 	function render(galleryVO, updown){
 		console.log(galleryVO);
@@ -478,6 +484,9 @@ $(document).ready(function(){
 		}
 	
 	};
-</script>		
+	
+	});	 // $('#upLoad').on('submit', function(event){ -----------------End
+		
+</script>
 </body>
 </html>
