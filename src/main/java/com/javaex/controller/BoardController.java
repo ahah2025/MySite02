@@ -72,7 +72,18 @@ public class BoardController {
 	
 	
 	//글쓰기 폼
+	@RequestMapping(value={"/writingform"}, method= {RequestMethod.GET, RequestMethod.POST})
+	public String writingform(Model model ) {
+		System.out.println("BoardController.writingform()");
 
+		List<BoardVO> wList = boardService.wform();
+		System.out.println(wList);
+		
+		model.addAttribute("wList", wList);
+		
+		return "board/editform";
+	}		
+	
 	//글쓰기
 
 	//--수정폼

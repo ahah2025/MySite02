@@ -65,5 +65,14 @@ public class BoardRepository {
 		return totalCount;
 	}	
 	
+	//글쓰기 폼
+	public int boardInsert() {
+		System.out.println("BoardRepository.boardInsert()");
+		
+		int wform = sqlSession.insert(null);
+		
+		return wform;
+	}
+	
 }
  
