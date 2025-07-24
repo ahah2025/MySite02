@@ -21,7 +21,6 @@ public class AttachController {
 	@RequestMapping(value = "/attach/form", method = { RequestMethod.GET, RequestMethod.POST })
 	public String form() {
 		System.out.println("AttachController.form()");
-		System.out.println("2025.07.");
 
 		return "attach/form";
 	}
