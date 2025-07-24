@@ -20,7 +20,7 @@ public class AttachController {
 	// 파일업로드폼
 	@RequestMapping(value = "/attach/form", method = { RequestMethod.GET, RequestMethod.POST })
 	public String form() {
-		System.out.println("AttachController.form()");
+		System.out.println("AttachController.form(1234)");
 
 		return "attach/form";
 	}
