@@ -22,10 +22,19 @@ public class AttachService {
 	public String exeUpload(MultipartFile file){
 		System.out.println("AttachService.exeUpload()");
 
-		//파일저장경로
-		//String saveDir = "C:\\JavaStudy\\upload\\"; local할때
-		String saveDir = "/data/upload"; //리눅스 root 에 저장
+		//현재 os명
+		String osName = System.getProperty("os.name").toLowerCase();
 		
+		
+		//파일저장경로
+		String saveDir ="";
+		
+		if(osName.contains("win") ) { //윈도우면
+			System.out.println("지금 os 윈도우");
+			saveDir = "C:\\\\JavaStudy\\\\upload\\\\";
+		}else { //리눅스면
+			saveDir = "/data/upload";
+		}
 		
 		//-------(1)파일정보를 추출 DB에 저장
 		//오리지널 파일명 
