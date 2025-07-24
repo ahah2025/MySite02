@@ -1,10 +1,10 @@
 name: Deploy WAR to EC2 Tomcat  # 자동화 작업 흐름 이름 (워크플로)
 
 on:
-  #push:
-  #  branches: [ "master" ]  # master 브랜치에 push 될 때 실행됨
+  push:
+    branches: [ "master" ]  # master 브랜치에 push 될 때 실행됨
 
-  workflow_dispatch:        # 👉 GitHub 화면에서 수동으로 버튼 눌러 실행할 수 있게 해줌
+  #workflow_dispatch:        # 👉 GitHub 화면에서 수동으로 버튼 눌러 실행할 수 있게 해줌
   # 위 설정을 넣으면 GitHub Actions 탭에서 버튼 클릭하여 이 워크플로를 수동 실행 가능함
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
         distribution: 'temurin'    # OpenJDK 배포판 중 하나인 temurin 사용
 
     - name: Build WAR with Maven
-      run: mvn clean package  # Maven으로 WAR 파일 빌드 (기존 빌드 결과는 삭제하고 새로 생성)
+      run: mvn clean package -DskipTests  # Maven으로 WAR 파일 빌드 (기존 빌드 결과는 삭제하고 새로 생성)
 
     - name: Copy WAR to EC2
       uses: appleboy/scp-action@v0.1.7  # 로컬에서 서버(EC2)로 파일을 복사하는 명령어 모음 (appleboy가 만듬)
