@@ -118,9 +118,6 @@
 		    <scope>test</scope>
 		</dependency>
 		<!--//mybatis-->					
-		
-
-		
 
 	</dependencies>
 
@@ -134,6 +131,4 @@
 		</plugins>
 	</build>
 	
-	
-
 </project>
