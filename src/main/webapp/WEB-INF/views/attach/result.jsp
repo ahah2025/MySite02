@@ -45,7 +45,7 @@
 								<img src="${pageContext.request.contextPath}/upload/${requestScope.saveName}">
 							</div>
 							
-							<a class="btn btn-gray btn-md" href=""> 다시 업로드 하기 </a>
+							<td><input type="file" name="file"> 다시 업로드 하기</td>
 							
 						</div>
 					</div>
