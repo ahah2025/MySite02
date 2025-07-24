@@ -31,7 +31,7 @@
                 
                 <main>
 					<div class="main-head clearfix">
-                        <h3>일반게시판</h3>
+                        <h3>첨부파일연습</h3>
                         <ol class="clearfix">
                             <li>홈</li>
                             <li>게시판</li>
