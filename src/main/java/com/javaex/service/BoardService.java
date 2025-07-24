@@ -169,6 +169,7 @@ public class BoardService {
 	}	
 	
 	//글쓰기 폼
+	/*
 	public int wform(BoardVO boardVO){
 		System.out.println("BoardService.wform()");
 		
@@ -176,5 +177,6 @@ public class BoardService {
 		
 		return writingsave;
 	}
+	*/
 	
 }
