@@ -23,7 +23,9 @@ public class AttachService {
 		System.out.println("AttachService.exeUpload()");
 
 		//파일저장경로
-		String saveDir = "C:\\JavaStudy\\upload\\";
+		//String saveDir = "C:\\JavaStudy\\upload\\"; local할때
+		String saveDir = "/data/upload"; //리눅스 root 에 저장
+		
 		
 		//-------(1)파일정보를 추출 DB에 저장
 		//오리지널 파일명 

@@ -10,7 +10,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:///C:/javaStudy/upload/");
+        //.addResourceLocations("file:///C:/javaStudy/upload/"); local에서할때
+        .addResourceLocations("file:/data/upload/"); //서버에서 할때
     }
     
 }
