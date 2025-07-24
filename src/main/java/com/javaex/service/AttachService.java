@@ -6,15 +6,20 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.repository.FileRepository;
 import com.javaex.vo.FileVO;
 
 @Service
 public class AttachService {
 
 	//필드
+	@Autowired
+	private FileRepository fileRepository;
 	
 	//생성자 메소드gs
 	
@@ -63,7 +68,8 @@ public class AttachService {
 		
 		//--> DB 저장
 		//과제(주황색)
-		
+		Fileadd fileadd = new Fileadd(orgName, exName, saveName, filePath, filesize);
+	    fileRepository.save(fileadd); // 저장
 		
 		//-------(2)실물파일을 하드디스크에 저장
 		try {
