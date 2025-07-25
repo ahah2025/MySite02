@@ -15,7 +15,7 @@
     </head>
 
 <body>
-	TEST
+	
 	<div class="wrap">
          	<!-- 해더 + 네비 ------------------------------------>
             <c:import url="/WEB-INF/views/include/header.jsp"></c:import>
